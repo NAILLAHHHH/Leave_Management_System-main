@@ -32,7 +32,7 @@ public class NotificationServiceImpl implements NotificationService {
         Notification notification = new Notification();
         notification.setEmployee(employee);
         notification.setTitle("Leave Request Approved");
-        notification.setMessage(String.format("Your leave request (#%d) has been approved", leaveId));
+        notification.setMessage("Your leave request (#%d) has been approved".formatted(leaveId));
         notification.setRead(false);
         notification.setCreatedAt(LocalDateTime.now());
         notificationRepository.save(notification);
@@ -43,7 +43,7 @@ public class NotificationServiceImpl implements NotificationService {
         Notification notification = new Notification();
         notification.setEmployee(employee);
         notification.setTitle("Leave Request Rejected");
-        notification.setMessage(String.format("Your leave request (#%d) has been rejected. Reason: %s", 
+        notification.setMessage("Your leave request (#%d) has been rejected. Reason: %s".formatted(
                 leaveId, reason));
         notification.setRead(false);
         notification.setCreatedAt(LocalDateTime.now());
