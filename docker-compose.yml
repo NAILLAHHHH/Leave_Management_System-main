@@ -9,31 +9,11 @@ services:
       - "8080:8080"
     restart: always
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/leave_management
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=12345
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://leave_management_wajz_user:6ujroB27GKpb5rKiDqVEWNV12PKh5dT8@dpg-d735dl42kvos7388bsi0-a.oregon-postgres.render.com/leave_management_wajz
+      - SPRING_DATASOURCE_USERNAME=leave_management_wajz_user
+      - SPRING_DATASOURCE_PASSWORD=6ujroB27GKpb5rKiDqVEWNV12PKh5dT8
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-    env_file: .env
-    depends_on:
-      db:
-        condition: service_healthy
+ 
 
-  db:
-    image: postgres:15
-    restart: always
-    environment:
-      - POSTGRES_DB=leave_management
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=12345
-    ports:
-      - "5432:5432"   # <-- fix indentation
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d leave_management"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+ 
 
-volumes:
-  postgres_data:
